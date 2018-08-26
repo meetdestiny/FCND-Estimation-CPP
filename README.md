@@ -29,11 +29,11 @@ This task has two sub-tasks:
 
 a) Implement PredictState() which is essentially predicting for the state mean. 
 
-	In this step using Rotate_BtoI() to rotate a vector from body frame to inertial frame  greatly simplfies the task of rotating a vector. 
+   In this step using Rotate_BtoI() to rotate a vector from body frame to inertial frame  greatly simplfies the task of rotating a vector. 
 
 b) Implement Predict which is essentailly the prediction of state covariance. 
 
-      In this task, we use the PredictState to update the ekfState. Also, we use the EKF update equation to update the covariance as per:
+   In this task, we use the PredictState to update the ekfState. Also, we use the EKF update equation to update the covariance as per:
 
 >     ekfCov = gPrime * ekfCov * gPrime.transpose() + Q;
  
@@ -43,6 +43,20 @@ gPrime is the Jacobian and Q is a constant transition model covariance loaded fr
 ![Step 3](step3.png)
 
 ## Step 4: Magnetometer Update
+
+In this step, add magnetometer to improve the filter's performance in estimating the vehicle's heading. 
+
+For first part, manually tuned the QYawStd parameter to .08 so that it approximately captures the magnitude of drift. 
+The step is to calculate the difference of estimated Yaw from calculated yaw of magnetometer 
+
+float diff = magYaw - ekfState(6);
+
+and then use Update method to update the value of predicted yaw as per EKF update formula. 
+
+![Step 4](step4.png)
+
+
+
 ## Step 5: Closed Loop + GPS Update
 ## Step 6: Adding Custom Controller
 
