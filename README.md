@@ -56,11 +56,19 @@ and then use Update method to update the value of predicted yaw as per EKF updat
 ![Step 4](step4.png)
 
 
-
 ## Step 5: Closed Loop + GPS Update
+ As part of first part, tuned process noise model in QuadEstimatorEKF.txt to capture the error with estimated uncertainty of the filter.
+
+As part of second part, implemented the UpdateFromGPS() method using EKF update of GPS reading discarding the heading reading and using only the position and velocity. 
+
+
 ## Step 6: Adding Custom Controller
+ 
+
+As a continuation of part 5, replaced the provided controller with the one developed in CPP-Controller project. With tuned parameters and replaced controller, achieved all the mission objectives sucessfully !!
 
 
+![Step 6](step6.png)
 
 
 
