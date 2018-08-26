@@ -18,7 +18,13 @@ These values seem to tally well with SimulatedSensors.txt values of 0.7 and 0.5
 
 
 ## Step 2: Attitude Estimation
+In order to improve the gyro,use the non-linear Euler forward approach. FromEuler123_RPY is a handy method to convert current Euler estimates to a quaternion. Then IntegrateBodyRate is used to integerate the body rate. Finally, convert the quaternion back to new euler angle. Yaw may be normalized to lie in between -pi and pi. 
+
+![Step 2](step2.png)
+
+
 ## Step 3: Prediction Step
+
 ## Step 4: Magnetometer Update
 ## Step 5: Closed Loop + GPS Update
 ## Step 6: Adding Custom Controller
