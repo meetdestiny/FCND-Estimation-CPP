@@ -24,6 +24,23 @@ In order to improve the gyro,use the non-linear Euler forward approach. FromEule
 
 
 ## Step 3: Prediction Step
+ 
+This task has two sub-tasks:
+
+a) Implement PredictState() which is essentially predicting for the state mean. 
+
+	In this step using Rotate_BtoI() to rotate a vector from body frame to inertial frame  greatly simplfies the task of rotating a vector. 
+
+b) Implement Predict which is essentailly the prediction of state covariance. 
+
+      In this task, we use the PredictState to update the ekfState. Also, we use the EKF update equation to update the covariance as per:
+
+>     ekfCov = gPrime * ekfCov * gPrime.transpose() + Q;
+ 
+gPrime is the Jacobian and Q is a constant transition model covariance loaded from parameter file. 
+
+
+![Step 3](step3.png)
 
 ## Step 4: Magnetometer Update
 ## Step 5: Closed Loop + GPS Update
